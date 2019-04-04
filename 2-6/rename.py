@@ -10,15 +10,18 @@ file_list_name = args[1]
 prefix = args[2]
 outfile_name = args[3]
 
-filelist = open(file_list_name, "r")
-outfile = open(outfile_name, "w")
+try:
+    filelist = open(file_list_name, "r")
+    outfile = open(outfile_name, "w")
 
-lines = filelist.readlines()
+    lines = filelist.readlines()
 
-for i, line in enumerate(lines):
-    serial = '_{:0>3}_'.format(i)
-    new_filename = prefix + serial + line.split('_')[-1]
-    outfile.write(new_filename)
+    for i, line in enumerate(lines):
+        serial = '_{:0>3}_'.format(i)
+        new_filename = prefix + serial + line.split('_')[-1]
+        outfile.write(new_filename)
 
-filelist.close()
-outfile.close()
+    filelist.close()
+    outfile.close()
+except Exception as e:
+    print(e)
